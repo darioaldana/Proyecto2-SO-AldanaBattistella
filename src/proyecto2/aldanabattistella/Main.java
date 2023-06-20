@@ -15,11 +15,9 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        for (int i = 0; i < 10; i++) {
-            System.out.println(i);
-            Vehiculo v = new Vehiculo();
-            System.out.println("");
-        }
+        Ventana ventana = new Ventana();
+        ventana.setVisible(true); 
+        
     }
     
 }
