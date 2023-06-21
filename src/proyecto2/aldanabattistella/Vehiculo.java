@@ -11,8 +11,9 @@ import java.util.Random;
  * @author dario
  */
 public class Vehiculo {
-    public int id; 
-    public boolean carroceriaHQ, chasisHQ, motorHQ, ruedasHQ; 
+    public int id;
+    public boolean carroceriaHQ, chasisHQ, motorHQ, ruedasHQ;
+    private Vehiculo next;
     
     public Vehiculo() {
         
@@ -31,5 +32,11 @@ public class Vehiculo {
         return int_random<percentage;
     }
     
+    public Vehiculo getNext(){
+        return next;
+    }
     
+    public void setNext(Vehiculo next){
+        this.next = next;
+    }
 }
