@@ -11,8 +11,10 @@ package proyecto2.aldanabattistella;
  */
 public class Empresa {
     public String name; 
-    public Vehiculo[] cola1;
-    public Vehiculo[] cola2;
-    public Vehiculo[] cola3;
-    public Vehiculo[] colaRefuerzo;
+    private int counter; 
+
+    
+    public int getCounter() {
+        return counter;
+    }
 }
