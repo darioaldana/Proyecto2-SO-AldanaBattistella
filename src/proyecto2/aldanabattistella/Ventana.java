@@ -10,13 +10,13 @@ package proyecto2.aldanabattistella;
  * @author dario
  */
 public class Ventana extends javax.swing.JFrame {
-
+    public int counterBugatti = 0; 
+    public int counterLambo = 0; 
+    
     /**
      * Creates new form Ventana
      */
     public Ventana() {
-        this.setResizable(false);
-        this.setLocationRelativeTo(null);
         initComponents();
     }
 
@@ -59,10 +59,11 @@ public class Ventana extends javax.swing.JFrame {
         txtArBugatti3 = new javax.swing.JTextArea();
         txtArSPBugattiRefuerzo = new javax.swing.JScrollPane();
         txtArBugattiRefuerzo = new javax.swing.JTextArea();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        getContentPane().add(slider, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 380, -1, -1));
+        getContentPane().add(slider, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 400, -1, -1));
 
         jButton1.setText("jButton1");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -70,14 +71,14 @@ public class Ventana extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 440, -1, -1));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 460, 80, 30));
 
         panLambo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lamboTitle.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lamboTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lamboTitle.setText("Lamborghini");
-        panLambo.add(lamboTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 240, -1));
+        panLambo.add(lamboTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 240, 30));
 
         lblLamboNivel1.setText("Nivel 1");
         panLambo.add(lblLamboNivel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, -1, -1));
@@ -135,7 +136,7 @@ public class Ventana extends javax.swing.JFrame {
 
         panLambo.add(txtArSPLambo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, 190, 40));
 
-        getContentPane().add(panLambo, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 50, 240, 400));
+        getContentPane().add(panLambo, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 50, 240, 400));
 
         panBugatti.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -200,16 +201,20 @@ public class Ventana extends javax.swing.JFrame {
 
         panBugatti.add(txtArSPBugattiRefuerzo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 340, 190, 40));
 
-        getContentPane().add(panBugatti, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 50, 240, 400));
+        getContentPane().add(panBugatti, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, 240, 400));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 500));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        for (int i = 0; i < 10; i++) {
+        for (int i = 1; i < 21; i++) {
             System.out.println(i);
-            Vehiculo v = new Vehiculo();
-            txtArBugatti1.append(Integer.toString(i));
+            Vehiculo vLambo = new Vehiculo("Lamborghini", this.counterLambo);
+            Vehiculo vBugatti = new Vehiculo("Bugatti", this.counterBugatti);
+            this.counterBugatti++;
+            this.counterLambo++;
+            //txtArBugatti1.append(Integer.toString(i));
             System.out.println("");
         }
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -252,6 +257,7 @@ public class Ventana extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel bugattiTitle;
     private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lamboTitle;
     private javax.swing.JLabel lblBugattiNivel1;
     private javax.swing.JLabel lblBugattiNivel2;

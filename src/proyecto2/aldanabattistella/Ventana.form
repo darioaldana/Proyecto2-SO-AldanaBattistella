@@ -28,7 +28,7 @@
     <Component class="javax.swing.JSlider" name="slider">
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="300" y="380" width="-1" height="-1"/>
+          <AbsoluteConstraints x="290" y="400" width="-1" height="-1"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -41,14 +41,14 @@
       </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="370" y="440" width="-1" height="-1"/>
+          <AbsoluteConstraints x="350" y="460" width="80" height="30"/>
         </Constraint>
       </Constraints>
     </Component>
     <Container class="javax.swing.JPanel" name="panLambo">
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="520" y="50" width="240" height="400"/>
+          <AbsoluteConstraints x="510" y="50" width="240" height="400"/>
         </Constraint>
       </Constraints>
 
@@ -66,7 +66,7 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="0" y="0" width="240" height="-1"/>
+              <AbsoluteConstraints x="0" y="0" width="240" height="30"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -227,7 +227,7 @@
     <Container class="javax.swing.JPanel" name="panBugatti">
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="40" y="50" width="240" height="400"/>
+          <AbsoluteConstraints x="30" y="50" width="240" height="400"/>
         </Constraint>
       </Constraints>
 
@@ -403,5 +403,12 @@
         </Container>
       </SubComponents>
     </Container>
+    <Component class="javax.swing.JLabel" name="jLabel1">
+      <Constraints>
+        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+          <AbsoluteConstraints x="0" y="0" width="800" height="500"/>
+        </Constraint>
+      </Constraints>
+    </Component>
   </SubComponents>
 </Form>

@@ -11,25 +11,49 @@ import java.util.Random;
  * @author dario
  */
 public class Vehiculo {
-    public int id;
+    public String id;
+    public int qualityLevel; //1, 2, 3 y 4 para refuerzo
     public boolean carroceriaHQ, chasisHQ, motorHQ, ruedasHQ;
+    public String empresa;
     private Vehiculo next;
     
-    public Vehiculo() {
+    public Vehiculo(String empresa, int counter) {
+        this.carroceriaHQ = (setQuality(60));
+        this.chasisHQ = (setQuality(70));
+        this.motorHQ = (setQuality(50));
+        this.ruedasHQ = (setQuality(40));
         
-        System.out.println("Carrocería:  " + (setQuality(60)));
-        System.out.println("Chasis:  " + (setQuality(60)));
-        System.out.println("Motor:  " + (setQuality(60)));
-        System.out.println("Rueda:  " + (setQuality(60)));
+        this.id = create_id(empresa, counter);
+                
+        this.qualityLevel = setQualityFinal(carroceriaHQ, chasisHQ, motorHQ, ruedasHQ);
         
-        
+        System.out.println("Carrocería:  " + carroceriaHQ);
+        System.out.println("Chasis:  " + chasisHQ);
+        System.out.println("Motor:  " + motorHQ);
+        System.out.println("Rueda:  " + ruedasHQ);
+        System.out.println("CALIDAD: " + qualityLevel);
+        System.out.println("ID: " + id);
+        System.out.println("");
     }
     
     public boolean setQuality(int percentage){
         Random rand = new Random(); 
-        int int_random = rand.nextInt(100); 
-        System.out.println(int_random);
+        int int_random = rand.nextInt(100);
         return int_random<percentage;
+    }
+    
+    public int setQualityFinal(boolean carroceriaHQ, boolean chasisHQ, boolean motorHQ, boolean ruedasHQ){
+
+        int hq = 0;
+        if (carroceriaHQ){hq++;}
+        if (chasisHQ){hq++;}
+        if (motorHQ){hq++;}
+        if (ruedasHQ){hq++;}
+
+        if (hq == 4){return 1;} 
+        if (hq == 3 && motorHQ){return 1;}
+        if (hq>=2){return 2;}
+        return 3; 
     }
     
     public Vehiculo getNext(){
@@ -38,5 +62,20 @@ public class Vehiculo {
     
     public void setNext(Vehiculo next){
         this.next = next;
+    }
+    
+    public String create_id(String empresa, int counter){
+        String id;
+        if(empresa.equals("Bugatti")){
+            id = "BU";
+        }else{
+            id="LA";
+        }
+
+        String n = Integer.toString(counter+1);
+        if (n.length()==1){n="0"+n;}
+        id+=n;
+        return id; 
+        
     }
 }
