@@ -34,6 +34,8 @@ public class Vehiculo {
         System.out.println("CALIDAD: " + qualityLevel);
         System.out.println("ID: " + id);
         System.out.println("");
+        
+        //PROBANDo
     }
     
     public boolean setQuality(int percentage){
