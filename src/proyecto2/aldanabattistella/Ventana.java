@@ -83,7 +83,13 @@ public class Ventana extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        getContentPane().add(slider, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 400, -1, -1));
+
+        slider.setMaximum(21);
+        slider.setMinimum(1);
+        slider.setPaintLabels(true);
+        slider.setValue(11);
+        slider.setName(""); // NOI18N
+        getContentPane().add(slider, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 391, -1, 40));
 
         jButton1.setText("jButton1");
         jButton1.addActionListener(new java.awt.event.ActionListener() {

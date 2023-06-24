@@ -26,9 +26,16 @@
   </Layout>
   <SubComponents>
     <Component class="javax.swing.JSlider" name="slider">
+      <Properties>
+        <Property name="maximum" type="int" value="21"/>
+        <Property name="minimum" type="int" value="1"/>
+        <Property name="paintLabels" type="boolean" value="true"/>
+        <Property name="value" type="int" value="11"/>
+        <Property name="name" type="java.lang.String" value="" noResource="true"/>
+      </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="290" y="400" width="-1" height="-1"/>
+          <AbsoluteConstraints x="290" y="391" width="-1" height="40"/>
         </Constraint>
       </Constraints>
     </Component>
