@@ -5,6 +5,10 @@
  */
 package proyecto2.aldanabattistella;
 
+import static java.lang.Thread.sleep;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author dario
@@ -12,11 +16,27 @@ package proyecto2.aldanabattistella;
 public class Ventana extends javax.swing.JFrame {
     public int counterBugatti = 0; 
     public int counterLambo = 0; 
+    public Cola Lambo1;
+    public Cola Lambo2; 
+    public Cola Lambo3;
+    public Cola Lambo4;
+    public Cola Bugatti1;
+    public Cola Bugatti2; 
+    public Cola Bugatti3;
+    public Cola Bugatti4; 
     
     /**
      * Creates new form Ventana
      */
     public Ventana() {
+        this.Lambo1 = new Cola();
+        this.Lambo2 = new Cola();
+        this.Lambo3 = new Cola();
+        this.Lambo4 = new Cola();
+        this.Bugatti1 = new Cola();
+        this.Bugatti2 = new Cola();
+        this.Bugatti3 = new Cola();
+        this.Bugatti4 = new Cola();
         initComponents();
     }
 
@@ -96,9 +116,10 @@ public class Ventana extends javax.swing.JFrame {
 
         txtArLamboRefuerzo.setEditable(false);
         txtArLamboRefuerzo.setColumns(20);
+        txtArLamboRefuerzo.setFont(new java.awt.Font("Monospaced", 0, 10)); // NOI18N
         txtArLamboRefuerzo.setLineWrap(true);
         txtArLamboRefuerzo.setRows(5);
-        txtArLamboRefuerzo.setPreferredSize(new java.awt.Dimension(80, 45));
+        txtArLamboRefuerzo.setPreferredSize(new java.awt.Dimension(124, 100));
         txtArSPLamboRefuerzo.setViewportView(txtArLamboRefuerzo);
 
         panLambo.add(txtArSPLamboRefuerzo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 340, 190, 40));
@@ -107,9 +128,10 @@ public class Ventana extends javax.swing.JFrame {
 
         txtArLambo3.setEditable(false);
         txtArLambo3.setColumns(20);
+        txtArLambo3.setFont(new java.awt.Font("Monospaced", 0, 10)); // NOI18N
         txtArLambo3.setLineWrap(true);
         txtArLambo3.setRows(5);
-        txtArLambo3.setPreferredSize(new java.awt.Dimension(80, 45));
+        txtArLambo3.setPreferredSize(new java.awt.Dimension(124, 100));
         txtArSPLambo3.setViewportView(txtArLambo3);
 
         panLambo.add(txtArSPLambo3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 250, 190, 40));
@@ -118,9 +140,10 @@ public class Ventana extends javax.swing.JFrame {
 
         txtArLambo2.setEditable(false);
         txtArLambo2.setColumns(20);
+        txtArLambo2.setFont(new java.awt.Font("Monospaced", 0, 10)); // NOI18N
         txtArLambo2.setLineWrap(true);
         txtArLambo2.setRows(5);
-        txtArLambo2.setPreferredSize(new java.awt.Dimension(80, 45));
+        txtArLambo2.setPreferredSize(new java.awt.Dimension(124, 100));
         txtArSPLambo2.setViewportView(txtArLambo2);
 
         panLambo.add(txtArSPLambo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, 190, 40));
@@ -129,9 +152,10 @@ public class Ventana extends javax.swing.JFrame {
 
         txtArLambo1.setEditable(false);
         txtArLambo1.setColumns(20);
+        txtArLambo1.setFont(new java.awt.Font("Monospaced", 0, 10)); // NOI18N
         txtArLambo1.setLineWrap(true);
         txtArLambo1.setRows(5);
-        txtArLambo1.setPreferredSize(new java.awt.Dimension(80, 45));
+        txtArLambo1.setPreferredSize(new java.awt.Dimension(124, 100));
         txtArSPLambo1.setViewportView(txtArLambo1);
 
         panLambo.add(txtArSPLambo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, 190, 40));
@@ -161,9 +185,10 @@ public class Ventana extends javax.swing.JFrame {
 
         txtArBugatti1.setEditable(false);
         txtArBugatti1.setColumns(20);
+        txtArBugatti1.setFont(new java.awt.Font("Monospaced", 0, 10)); // NOI18N
         txtArBugatti1.setLineWrap(true);
         txtArBugatti1.setRows(5);
-        txtArBugatti1.setPreferredSize(new java.awt.Dimension(80, 45));
+        txtArBugatti1.setPreferredSize(new java.awt.Dimension(124, 100));
         txtArSPBugatti1.setViewportView(txtArBugatti1);
 
         panBugatti.add(txtArSPBugatti1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, 190, 40));
@@ -172,9 +197,10 @@ public class Ventana extends javax.swing.JFrame {
 
         txtArBugatti2.setEditable(false);
         txtArBugatti2.setColumns(20);
+        txtArBugatti2.setFont(new java.awt.Font("Monospaced", 0, 10)); // NOI18N
         txtArBugatti2.setLineWrap(true);
         txtArBugatti2.setRows(5);
-        txtArBugatti2.setPreferredSize(new java.awt.Dimension(80, 45));
+        txtArBugatti2.setPreferredSize(new java.awt.Dimension(124, 100));
         txtArSPBugatti2.setViewportView(txtArBugatti2);
 
         panBugatti.add(txtArSPBugatti2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, 190, 40));
@@ -183,9 +209,10 @@ public class Ventana extends javax.swing.JFrame {
 
         txtArBugatti3.setEditable(false);
         txtArBugatti3.setColumns(20);
+        txtArBugatti3.setFont(new java.awt.Font("Monospaced", 0, 10)); // NOI18N
         txtArBugatti3.setLineWrap(true);
         txtArBugatti3.setRows(5);
-        txtArBugatti3.setPreferredSize(new java.awt.Dimension(80, 45));
+        txtArBugatti3.setPreferredSize(new java.awt.Dimension(124, 100));
         txtArSPBugatti3.setViewportView(txtArBugatti3);
 
         panBugatti.add(txtArSPBugatti3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 250, 190, 40));
@@ -194,9 +221,10 @@ public class Ventana extends javax.swing.JFrame {
 
         txtArBugattiRefuerzo.setEditable(false);
         txtArBugattiRefuerzo.setColumns(20);
+        txtArBugattiRefuerzo.setFont(new java.awt.Font("Monospaced", 0, 10)); // NOI18N
         txtArBugattiRefuerzo.setLineWrap(true);
         txtArBugattiRefuerzo.setRows(5);
-        txtArBugattiRefuerzo.setPreferredSize(new java.awt.Dimension(80, 45));
+        txtArBugattiRefuerzo.setPreferredSize(new java.awt.Dimension(124, 100));
         txtArSPBugattiRefuerzo.setViewportView(txtArBugattiRefuerzo);
 
         panBugatti.add(txtArSPBugattiRefuerzo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 340, 190, 40));
@@ -209,16 +237,75 @@ public class Ventana extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         for (int i = 1; i < 21; i++) {
-            System.out.println(i);
+            //System.out.println(i);
             Vehiculo vLambo = new Vehiculo("Lamborghini", this.counterLambo);
+            this.counterLambo++;
+            txtAreaAsign(vLambo);
+            
             Vehiculo vBugatti = new Vehiculo("Bugatti", this.counterBugatti);
             this.counterBugatti++;
-            this.counterLambo++;
+            txtAreaAsign(vBugatti);
             //txtArBugatti1.append(Integer.toString(i));
             System.out.println("");
+           
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    public void createCola(Vehiculo vehiculo){
+        
+    }
+    
+    public void txtAreaAsign(Vehiculo vehiculo){
+ 
+        if (vehiculo.empresa.equals("Lamborghini")){
+            if (vehiculo.qualityLevel==1){
+                this.Lambo1.agregar(vehiculo);
+                if (txtArLambo1.getText().equals("")){
+                        txtArLambo1.append(vehiculo.id);
+                    }else{
+                        txtArLambo1.append(" - " +vehiculo.id);
+                    }
+            } else if (vehiculo.qualityLevel==2){
+                this.Lambo2.agregar(vehiculo);
+                if (txtArLambo2.getText().equals("")){
+                        txtArLambo2.append(vehiculo.id);
+                    }else{
+                        txtArLambo2.append(" - " +vehiculo.id);
+                    }
+            } else if (vehiculo.qualityLevel==3){
+                this.Lambo3.agregar(vehiculo);
+                if (txtArLambo3.getText().equals("")){
+                        txtArLambo3.append(vehiculo.id);
+                    }else{
+                        txtArLambo3.append(" - " +vehiculo.id);
+                    }
+            }
+        } else {
+            if (vehiculo.qualityLevel==1){
+                this.Bugatti1.agregar(vehiculo);
+                if (txtArBugatti1.getText().equals("")){
+                        txtArBugatti1.append(vehiculo.id);
+                    }else{
+                        txtArBugatti1.append(" - " +vehiculo.id);
+                    }
+            } else if (vehiculo.qualityLevel==2){
+                this.Bugatti2.agregar(vehiculo);
+                if (txtArBugatti2.getText().equals("")){
+                        txtArBugatti2.append(vehiculo.id);
+                    }else{
+                        txtArBugatti2.append(" - " +vehiculo.id);
+                    }
+            } else if (vehiculo.qualityLevel==3){
+                this.Bugatti3.agregar(vehiculo);
+                if (txtArBugatti3.getText().equals("")){
+                        txtArBugatti3.append(vehiculo.id);
+                    }else{
+                        txtArBugatti3.append(" - " +vehiculo.id);
+                }
+            }
+        }
+    }
+    
     /**
      * @param args the command line arguments
      */

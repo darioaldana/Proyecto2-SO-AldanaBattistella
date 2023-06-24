@@ -22,15 +22,16 @@ public class Vehiculo {
         this.chasisHQ = (setQuality(70));
         this.motorHQ = (setQuality(50));
         this.ruedasHQ = (setQuality(40));
+        this.empresa = empresa; 
         
         this.id = create_id(empresa, counter);
                 
         this.qualityLevel = setQualityFinal(carroceriaHQ, chasisHQ, motorHQ, ruedasHQ);
         
-        System.out.println("Carrocería:  " + carroceriaHQ);
-        System.out.println("Chasis:  " + chasisHQ);
-        System.out.println("Motor:  " + motorHQ);
-        System.out.println("Rueda:  " + ruedasHQ);
+//        System.out.println("Carrocería:  " + carroceriaHQ);
+//        System.out.println("Chasis:  " + chasisHQ);
+//        System.out.println("Motor:  " + motorHQ);
+//        System.out.println("Rueda:  " + ruedasHQ);
         System.out.println("CALIDAD: " + qualityLevel);
         System.out.println("ID: " + id);
         System.out.println("");
@@ -54,7 +55,7 @@ public class Vehiculo {
 
         if (hq == 4){return 1;} 
         if (hq == 3 && motorHQ){return 1;}
-        if (hq>=2){return 2;}
+        if (hq>=2 && motorHQ){return 2;}
         return 3; 
     }
     
