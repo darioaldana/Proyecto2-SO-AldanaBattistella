@@ -55,7 +55,7 @@ public class Vehiculo {
 
         if (hq == 4){return 1;} 
         if (hq == 3 && motorHQ){return 1;}
-        if (hq>=2 && motorHQ){return 2;}
+        if (hq>=2){return 2;}
         return 3; 
     }
     

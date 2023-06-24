@@ -49,8 +49,10 @@ public class Ventana extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        slider = new javax.swing.JSlider();
+        lblSliderValue = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        slider = new javax.swing.JSlider();
+        btnStart = new javax.swing.JButton();
         panLambo = new javax.swing.JPanel();
         lamboTitle = new javax.swing.JLabel();
         lblLamboNivel1 = new javax.swing.JLabel();
@@ -79,25 +81,44 @@ public class Ventana extends javax.swing.JFrame {
         txtArBugatti3 = new javax.swing.JTextArea();
         txtArSPBugattiRefuerzo = new javax.swing.JScrollPane();
         txtArBugattiRefuerzo = new javax.swing.JTextArea();
-        jLabel1 = new javax.swing.JLabel();
+        lblFondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        slider.setMaximum(21);
-        slider.setMinimum(1);
-        slider.setPaintLabels(true);
-        slider.setValue(11);
-        slider.setName(""); // NOI18N
-        getContentPane().add(slider, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 391, -1, 40));
+        lblSliderValue.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        lblSliderValue.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblSliderValue.setText("10");
+        getContentPane().add(lblSliderValue, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 390, 180, -1));
 
-        jButton1.setText("jButton1");
+        jButton1.setText("Prueba la seleccion de carros");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 460, 80, 30));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 250, -1, -1));
+
+        slider.setMaximum(19);
+        slider.setMinimum(1);
+        slider.setToolTipText("");
+        slider.setValue(10);
+        slider.setName(""); // NOI18N
+        slider.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                sliderStateChanged(evt);
+            }
+        });
+        getContentPane().add(slider, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 400, -1, 40));
+
+        btnStart.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnStart.setText("START");
+        btnStart.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnStartActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnStart, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 460, 120, 30));
 
         panLambo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -236,82 +257,111 @@ public class Ventana extends javax.swing.JFrame {
         panBugatti.add(txtArSPBugattiRefuerzo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 340, 190, 40));
 
         getContentPane().add(panBugatti, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, 240, 400));
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 500));
+        getContentPane().add(lblFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 500));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        for (int i = 1; i < 21; i++) {
-            //System.out.println(i);
+    private void btnStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStartActionPerformed
+        btnStart.setVisible(false);
+        for (int i = 1; i < 11; i++) {
+           
             Vehiculo vLambo = new Vehiculo("Lamborghini", this.counterLambo);
             this.counterLambo++;
-            txtAreaAsign(vLambo);
+            queue(vLambo);
             
             Vehiculo vBugatti = new Vehiculo("Bugatti", this.counterBugatti);
             this.counterBugatti++;
-            txtAreaAsign(vBugatti);
-            //txtArBugatti1.append(Integer.toString(i));
+            queue(vBugatti);
+            
             System.out.println("");
            
         }
+        
+        updateFields(this.txtArLambo1, this.Lambo1);
+        updateFields(this.txtArLambo2, this.Lambo2);
+        updateFields(this.txtArLambo3, this.Lambo3);
+        updateFields(this.txtArBugatti1, this.Bugatti1);
+        updateFields(this.txtArBugatti2, this.Bugatti2);
+        updateFields(this.txtArBugatti3, this.Bugatti3);
+        
+        
+    }//GEN-LAST:event_btnStartActionPerformed
+
+    private void sliderStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_sliderStateChanged
+        lblSliderValue.setText(Integer.toString(slider.getValue()));
+    }//GEN-LAST:event_sliderStateChanged
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        selectCars();
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    public void createCola(Vehiculo vehiculo){
+    public void selectCars(){
+        Vehiculo LamboChosen, BugattiChosen;
+        if (!this.Lambo1.isEmpty()){
+            LamboChosen = this.Lambo1.getHead();
+            this.Lambo1.sacar();
+            updateFields(txtArLambo1, Lambo1);
+        } else if (!this.Lambo2.isEmpty()){
+            LamboChosen = this.Lambo2.getHead();
+            this.Lambo2.sacar();
+            updateFields(txtArLambo2, Lambo2);
+        } else {
+            LamboChosen = this.Lambo3.getHead();
+            this.Lambo3.sacar();
+            updateFields(txtArLambo3, Lambo3);
+        }
         
+        if (!this.Bugatti1.isEmpty()){
+            BugattiChosen = this.Bugatti1.getHead();
+            this.Bugatti1.sacar();
+            updateFields(txtArBugatti1, Bugatti1);
+        } else if (!this.Bugatti2.isEmpty()){
+            BugattiChosen = this.Bugatti2.getHead();
+            this.Bugatti2.sacar();
+            updateFields(txtArBugatti2, Bugatti2);
+        } else {
+            BugattiChosen = this.Bugatti3.getHead();
+            this.Bugatti3.sacar();
+            updateFields(txtArBugatti3, Bugatti3);
+        }
+
+        System.out.println("Seleccionados: " + LamboChosen.id + " vs " + BugattiChosen.id);
+
     }
     
-    public void txtAreaAsign(Vehiculo vehiculo){
- 
+    public void updateFields(javax.swing.JTextArea txtArea, Cola q){
+        txtArea.setText("");
+        if(q.isEmpty()){return;}
+        Vehiculo head = q.getHead(); 
+        txtArea.append(head.id);
+        head = head.getNext();
+        while (head!=null){  
+            txtArea.append(" - " + head.id);
+            head = head.getNext();
+        } 
+    }
+    
+    public void queue(Vehiculo vehiculo){
         if (vehiculo.empresa.equals("Lamborghini")){
             if (vehiculo.qualityLevel==1){
-                this.Lambo1.agregar(vehiculo);
-                if (txtArLambo1.getText().equals("")){
-                        txtArLambo1.append(vehiculo.id);
-                    }else{
-                        txtArLambo1.append(" - " +vehiculo.id);
-                    }
+                this.Lambo1.agregar(vehiculo);     
             } else if (vehiculo.qualityLevel==2){
                 this.Lambo2.agregar(vehiculo);
-                if (txtArLambo2.getText().equals("")){
-                        txtArLambo2.append(vehiculo.id);
-                    }else{
-                        txtArLambo2.append(" - " +vehiculo.id);
-                    }
             } else if (vehiculo.qualityLevel==3){
-                this.Lambo3.agregar(vehiculo);
-                if (txtArLambo3.getText().equals("")){
-                        txtArLambo3.append(vehiculo.id);
-                    }else{
-                        txtArLambo3.append(" - " +vehiculo.id);
-                    }
+                this.Lambo3.agregar(vehiculo);   
             }
         } else {
             if (vehiculo.qualityLevel==1){
                 this.Bugatti1.agregar(vehiculo);
-                if (txtArBugatti1.getText().equals("")){
-                        txtArBugatti1.append(vehiculo.id);
-                    }else{
-                        txtArBugatti1.append(" - " +vehiculo.id);
-                    }
             } else if (vehiculo.qualityLevel==2){
-                this.Bugatti2.agregar(vehiculo);
-                if (txtArBugatti2.getText().equals("")){
-                        txtArBugatti2.append(vehiculo.id);
-                    }else{
-                        txtArBugatti2.append(" - " +vehiculo.id);
-                    }
+                this.Bugatti2.agregar(vehiculo); 
             } else if (vehiculo.qualityLevel==3){
-                this.Bugatti3.agregar(vehiculo);
-                if (txtArBugatti3.getText().equals("")){
-                        txtArBugatti3.append(vehiculo.id);
-                    }else{
-                        txtArBugatti3.append(" - " +vehiculo.id);
-                }
+                this.Bugatti3.agregar(vehiculo); 
             }
         }
     }
-    
+        
     /**
      * @param args the command line arguments
      */
@@ -348,18 +398,20 @@ public class Ventana extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnStart;
     private javax.swing.JLabel bugattiTitle;
     private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lamboTitle;
     private javax.swing.JLabel lblBugattiNivel1;
     private javax.swing.JLabel lblBugattiNivel2;
     private javax.swing.JLabel lblBugattiNivel3;
     private javax.swing.JLabel lblBugattiRefuerzo;
+    private javax.swing.JLabel lblFondo;
     private javax.swing.JLabel lblLamboNivel1;
     private javax.swing.JLabel lblLamboNivel2;
     private javax.swing.JLabel lblLamboNivel3;
     private javax.swing.JLabel lblLamboRefuerzo;
+    private javax.swing.JLabel lblSliderValue;
     private javax.swing.JPanel panBugatti;
     private javax.swing.JPanel panLambo;
     private javax.swing.JSlider slider;
