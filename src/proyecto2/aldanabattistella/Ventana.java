@@ -24,6 +24,7 @@ public class Ventana extends javax.swing.JFrame {
     public Cola Bugatti2; 
     public Cola Bugatti3;
     public Cola Bugatti4; 
+    public int cicloCounter; 
     
     /**
      * Creates new form Ventana
@@ -37,6 +38,8 @@ public class Ventana extends javax.swing.JFrame {
         this.Bugatti2 = new Cola();
         this.Bugatti3 = new Cola();
         this.Bugatti4 = new Cola();
+        
+        this.cicloCounter = 2; 
         initComponents();
     }
 
@@ -328,6 +331,44 @@ public class Ventana extends javax.swing.JFrame {
 
         System.out.println("Seleccionados: " + LamboChosen.id + " vs " + BugattiChosen.id);
 
+        //AQUÍ VA LA LLAMADA A LA PARTE DE LA IA
+        
+        this.cicloCounter++;
+        if ((this.cicloCounter%2)==0){
+            System.out.println("");
+            System.out.println("");
+            createCars();
+        }
+        
+    }
+    
+    public void createCars(){
+        Vehiculo vLambo = new Vehiculo("Lamborghini", this.counterLambo);
+        this.counterLambo++;
+        queue(vLambo);
+        Vehiculo vBugatti = new Vehiculo("Bugatti", this.counterBugatti);
+        this.counterBugatti++;
+        queue(vBugatti);
+        
+        System.out.println("");
+        System.out.println("****NUEVOS:  " + vLambo.id + " y " + vBugatti.id);
+        System.out.println("");
+        
+        if (vLambo.qualityLevel==1){
+            updateFields(this.txtArLambo1, this.Lambo1);    
+        } else if (vLambo.qualityLevel==2){
+            updateFields(this.txtArLambo2, this.Lambo2);
+        } else if (vLambo.qualityLevel==3){
+            updateFields(this.txtArLambo3, this.Lambo3);
+        }
+
+        if (vBugatti.qualityLevel==1){
+            updateFields(this.txtArBugatti1, this.Bugatti1); 
+        } else if (vBugatti.qualityLevel==2){
+            updateFields(this.txtArBugatti2, this.Bugatti2);
+        } else if (vBugatti.qualityLevel==3){
+            updateFields(this.txtArBugatti3, this.Bugatti3);
+        }
     }
     
     public void updateFields(javax.swing.JTextArea txtArea, Cola q){
