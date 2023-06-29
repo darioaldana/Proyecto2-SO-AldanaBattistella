@@ -3,9 +3,6 @@ package proyecto2.aldanabattistella;
 import java.util.Random;
 
 public class IA {
-    public IA(){
-        
-    }
     
     public String winner(Vehiculo bu, Vehiculo la){
         int valor = resultado();
