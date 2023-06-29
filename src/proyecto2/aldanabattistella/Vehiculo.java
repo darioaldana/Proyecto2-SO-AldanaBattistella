@@ -15,6 +15,7 @@ public class Vehiculo {
     public int qualityLevel; //1, 2, 3 y 4 para refuerzo
     public boolean carroceriaHQ, chasisHQ, motorHQ, ruedasHQ;
     public String empresa;
+    public int hq;
     private Vehiculo next;
     
     public Vehiculo(String empresa, int counter) {
@@ -22,7 +23,8 @@ public class Vehiculo {
         this.chasisHQ = (setQuality(70));
         this.motorHQ = (setQuality(50));
         this.ruedasHQ = (setQuality(40));
-        this.empresa = empresa; 
+        this.empresa = empresa;
+        this.hq = 0;
         
         this.id = create_id(empresa, counter);
                 
@@ -47,15 +49,20 @@ public class Vehiculo {
     
     public int setQualityFinal(boolean carroceriaHQ, boolean chasisHQ, boolean motorHQ, boolean ruedasHQ){
 
-        int hq = 0;
-        if (carroceriaHQ){hq++;}
+        if (carroceriaHQ){hq+=2;}
         if (chasisHQ){hq++;}
-        if (motorHQ){hq++;}
-        if (ruedasHQ){hq++;}
+        if (motorHQ){hq+=3;}
+        if (ruedasHQ){hq+=4;}
+//        if (carroceriaHQ){hq++;}
+//        if (chasisHQ){hq++;}
+//        if (motorHQ){hq++;}
+//        if (ruedasHQ){hq++;}
 
-        if (hq == 4){return 1;} 
-        if (hq == 3 && motorHQ){return 1;}
-        if (hq>=2){return 2;}
+//        if (hq == 4){return 1;} 
+//        if (hq == 3 && motorHQ){return 1;}
+//        if (hq>=2){return 2;}
+        if (hq >= 8){return 1;} 
+        if (hq >= 4 && hq <= 7){return 2;}
         return 3; 
     }
     
