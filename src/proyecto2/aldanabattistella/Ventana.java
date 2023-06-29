@@ -373,6 +373,8 @@ public class Ventana extends javax.swing.JFrame {
             updateFields(this.txtArLambo3, this.Lambo3);
         }
 
+          //PROBARE UN PUSH
+        
         if (vBugatti.qualityLevel==1){
             updateFields(this.txtArBugatti1, this.Bugatti1); 
         } else if (vBugatti.qualityLevel==2){
