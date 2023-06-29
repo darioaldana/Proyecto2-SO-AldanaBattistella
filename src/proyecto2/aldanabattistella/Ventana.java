@@ -23,8 +23,10 @@ public class Ventana extends javax.swing.JFrame {
     public Cola Bugatti1;
     public Cola Bugatti2; 
     public Cola Bugatti3;
-    public Cola Bugatti4; 
-    public int cicloCounter; 
+    public Cola Bugatti4;
+    public IA procesador;
+    public int cicloCounter;
+    public int duration;
     
     /**
      * Creates new form Ventana
@@ -38,8 +40,10 @@ public class Ventana extends javax.swing.JFrame {
         this.Bugatti2 = new Cola();
         this.Bugatti3 = new Cola();
         this.Bugatti4 = new Cola();
+        this.procesador = new IA();
         
-        this.cicloCounter = 2; 
+        this.cicloCounter = 2;
+        this.duration = 10;
         initComponents();
     }
 
@@ -267,6 +271,8 @@ public class Ventana extends javax.swing.JFrame {
 
     private void btnStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStartActionPerformed
         btnStart.setVisible(false);
+        
+        //El admin crea los vehiculos iniciales
         for (int i = 1; i < 11; i++) {
            
             Vehiculo vLambo = new Vehiculo("Lamborghini", this.counterLambo);
@@ -288,11 +294,16 @@ public class Ventana extends javax.swing.JFrame {
         updateFields(this.txtArBugatti2, this.Bugatti2);
         updateFields(this.txtArBugatti3, this.Bugatti3);
         
+//        while(true){
+//            selectCars();
+//            
+//        }
         
     }//GEN-LAST:event_btnStartActionPerformed
 
     private void sliderStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_sliderStateChanged
         lblSliderValue.setText(Integer.toString(slider.getValue()));
+        this.duration = slider.getValue();
     }//GEN-LAST:event_sliderStateChanged
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
