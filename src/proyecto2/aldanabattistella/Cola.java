@@ -31,7 +31,6 @@ public class Cola {
     
     public void sacar(){
         if(this.isEmpty()){
-            System.out.println("no hay nada");
         }else if(size == 1){
             this.empty();
         }else{
@@ -39,19 +38,6 @@ public class Cola {
             size--;
         }
     }
-    
-//    public boolean contadores(){
-//        Vehiculo aux = this.head;
-//        for (int i = 0; i < this.size; i++) {
-//            if(aux.qualityLevel!=1){
-//                aux.counter++;
-//                if(aux.counter==8){
-//                    aux.qualityLevel--;
-//                    aux.counter = 0;
-//                }
-//            }
-//        }
-//    }
 
     public Vehiculo getHead() {
         return head;

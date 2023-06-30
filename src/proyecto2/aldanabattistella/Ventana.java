@@ -301,6 +301,7 @@ public class Ventana extends javax.swing.JFrame {
 //            if(!this.Lambo4.isEmpty()){
 //                Vehiculo chosen = this.Lambo4.getHead();
 //                this.Lambo4.sacar();
+//                chosen.setNext(null);
 //                
 //                Random rand = new Random(); 
 //                int int_random = rand.nextInt(100);
@@ -309,6 +310,15 @@ public class Ventana extends javax.swing.JFrame {
 //                    chosen.qualityLevel = 1;
 //                }
 //                queue(chosen);
+//                
+//                updateFields(this.txtArLambo1, this.Lambo1);
+//                updateFields(this.txtArLambo2, this.Lambo2);
+//                updateFields(this.txtArLambo3, this.Lambo3);
+//                updateFields(this.txtArBugatti1, this.Bugatti1);
+//                updateFields(this.txtArBugatti2, this.Bugatti2);
+//                updateFields(this.txtArBugatti3, this.Bugatti3);
+//                updateFields(this.txtArLamboRefuerzo, this.Lambo4);
+//                updateFields(this.txtArBugattiRefuerzo, this.Bugatti4);
 //            }
 //            
 //            selectCars();
@@ -358,6 +368,8 @@ public class Ventana extends javax.swing.JFrame {
         }
         LamboChosen.setNext(null);
         BugattiChosen.setNext(null);
+        LamboChosen.counter = 0;
+        BugattiChosen.counter = 0;
         
         //Empieza la IA
         try{
@@ -396,7 +408,7 @@ public class Ventana extends javax.swing.JFrame {
                 updateFields(this.txtArBugattiRefuerzo, this.Bugatti4);
                 break;
         }
-        
+        //El admin suma ciclos y contadores
         this.cicloCounter++;
         if ((this.cicloCounter%2)==0){
             Random rand = new Random(); 
@@ -407,6 +419,17 @@ public class Ventana extends javax.swing.JFrame {
             }
         }
         
+        contador(this.Bugatti2);
+        contador(this.Bugatti3);
+        contador(this.Lambo2);
+        contador(this.Lambo3);
+        
+        updateFields(this.txtArLambo1, this.Lambo1);
+        updateFields(this.txtArLambo2, this.Lambo2);
+        updateFields(this.txtArLambo3, this.Lambo3);
+        updateFields(this.txtArBugatti1, this.Bugatti1);
+        updateFields(this.txtArBugatti2, this.Bugatti2);
+        updateFields(this.txtArBugatti3, this.Bugatti3);
     }
     
     public void createCars(){
@@ -446,6 +469,29 @@ public class Ventana extends javax.swing.JFrame {
             txtArea.append(" - " + head.id);
             head = head.getNext();
         } 
+    }
+    
+    public void contador(Cola q){
+        Vehiculo aux = q.getHead();
+        Vehiculo aux2;
+                
+        while(aux!=null){
+            aux.counter++;
+            aux2 = aux.getNext();
+            if(aux.counter==8){
+                aux.counter = 0;
+                aux.qualityLevel--;
+                aux.setNext(null);
+                if(aux.qualityLevel==1){
+                    this.Lambo2.sacar();
+                    this.Lambo1.agregar(aux);
+                }else{
+                    this.Lambo3.sacar();
+                    this.Lambo2.agregar(aux);
+                }
+            }
+            aux=aux2;
+        }
     }
     
     public void queue(Vehiculo vehiculo){
