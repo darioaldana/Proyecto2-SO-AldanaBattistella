@@ -31,6 +31,7 @@ public class Ventana extends javax.swing.JFrame {
     //Ciclo tambien del admin
     public int cicloCounter;
     public int duration;
+    public int winsBu, winsLa;
     
     /**
      * Creates new form Ventana
@@ -49,6 +50,8 @@ public class Ventana extends javax.swing.JFrame {
         
         this.cicloCounter = 2;
         this.duration = 10;
+        this.winsBu = 0;
+        this.winsLa = 0;
         initComponents();
     }
 
@@ -296,35 +299,6 @@ public class Ventana extends javax.swing.JFrame {
         updateFields(this.txtArBugatti2, this.Bugatti2);
         updateFields(this.txtArBugatti3, this.Bugatti3);
         
-        
-//        while(true){
-//            if(!this.Lambo4.isEmpty()){
-//                Vehiculo chosen = this.Lambo4.getHead();
-//                this.Lambo4.sacar();
-//                chosen.setNext(null);
-//                
-//                Random rand = new Random(); 
-//                int int_random = rand.nextInt(100);
-//                
-//                if(int_random<=40){
-//                    chosen.qualityLevel = 1;
-//                }
-//                queue(chosen);
-//                
-//                updateFields(this.txtArLambo1, this.Lambo1);
-//                updateFields(this.txtArLambo2, this.Lambo2);
-//                updateFields(this.txtArLambo3, this.Lambo3);
-//                updateFields(this.txtArBugatti1, this.Bugatti1);
-//                updateFields(this.txtArBugatti2, this.Bugatti2);
-//                updateFields(this.txtArBugatti3, this.Bugatti3);
-//                updateFields(this.txtArLamboRefuerzo, this.Lambo4);
-//                updateFields(this.txtArBugattiRefuerzo, this.Bugatti4);
-//            }
-//            
-//            selectCars();
-//            
-//        }
-        
     }//GEN-LAST:event_btnStartActionPerformed
 
     private void sliderStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_sliderStateChanged
@@ -337,6 +311,44 @@ public class Ventana extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     public void selectCars(){
+        //El admin verifica la lista de refuerzo
+        if(!this.Lambo4.isEmpty()){
+            Vehiculo chosen = this.Lambo4.getHead();
+            this.Lambo4.sacar();
+            chosen.setNext(null);
+
+            Random rand = new Random(); 
+            int int_random = rand.nextInt(100);
+
+            if(int_random<=40){
+                chosen.qualityLevel = 1;
+            }
+            queue(chosen);
+
+            updateFields(this.txtArLambo1, this.Lambo1);
+            updateFields(this.txtArLambo2, this.Lambo2);
+            updateFields(this.txtArLambo3, this.Lambo3);
+            updateFields(this.txtArLamboRefuerzo, this.Lambo4);
+        }
+        if(!this.Bugatti4.isEmpty()){
+            Vehiculo chosen = this.Bugatti4.getHead();
+            this.Bugatti4.sacar();
+            chosen.setNext(null);
+
+            Random rand = new Random(); 
+            int int_random = rand.nextInt(100);
+
+            if(int_random<=40){
+                chosen.qualityLevel = 1;
+            }
+            queue(chosen);
+            
+            updateFields(this.txtArBugatti1, this.Bugatti1);
+            updateFields(this.txtArBugatti2, this.Bugatti2);
+            updateFields(this.txtArBugatti3, this.Bugatti3);
+            updateFields(this.txtArBugattiRefuerzo, this.Bugatti4);
+        }
+        
         Vehiculo LamboChosen, BugattiChosen;
         //El admin selecciona los carros para correr
         if (!this.Lambo1.isEmpty()){
@@ -386,10 +398,12 @@ public class Ventana extends javax.swing.JFrame {
             case "bu":
                 System.out.println("Gana b");
                 this.winners.agregar(BugattiChosen);
+                this.winsBu++;
                 break;
             case "la":
                 System.out.println("Gana l");
                 this.winners.agregar(LamboChosen);
+                this.winsLa++;
                 break;
             case "empate":
                 System.out.println("Empate");
