@@ -37,6 +37,7 @@ public class Ventana extends javax.swing.JFrame {
      * Creates new form Ventana
      */
     public Ventana() {
+       
         this.Lambo1 = new Cola();
         this.Lambo2 = new Cola();
         this.Lambo3 = new Cola();
@@ -53,6 +54,7 @@ public class Ventana extends javax.swing.JFrame {
         this.winsBu = 0;
         this.winsLa = 0;
         initComponents();
+        this.lblWinner.setVisible(false);
     }
 
     /**
@@ -65,10 +67,18 @@ public class Ventana extends javax.swing.JFrame {
     private void initComponents() {
 
         lblSliderValue = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
         slider = new javax.swing.JSlider();
         btnStart = new javax.swing.JButton();
+        panIA = new javax.swing.JPanel();
+        btnCarrera = new javax.swing.JButton();
+        lblLamboSelected = new javax.swing.JLabel();
+        lblVS = new javax.swing.JLabel();
+        lblResult = new javax.swing.JLabel();
+        lblWinner = new javax.swing.JLabel();
+        lblBugattiSelected = new javax.swing.JLabel();
+        lblState = new javax.swing.JLabel();
         panLambo = new javax.swing.JPanel();
+        lblNWinsLa = new javax.swing.JLabel();
         lamboTitle = new javax.swing.JLabel();
         lblLamboNivel1 = new javax.swing.JLabel();
         lblLamboNivel2 = new javax.swing.JLabel();
@@ -83,6 +93,7 @@ public class Ventana extends javax.swing.JFrame {
         txtArSPLambo1 = new javax.swing.JScrollPane();
         txtArLambo1 = new javax.swing.JTextArea();
         panBugatti = new javax.swing.JPanel();
+        lblNWinsBugatti = new javax.swing.JLabel();
         bugattiTitle = new javax.swing.JLabel();
         lblBugattiNivel1 = new javax.swing.JLabel();
         lblBugattiNivel2 = new javax.swing.JLabel();
@@ -101,19 +112,14 @@ public class Ventana extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        lblSliderValue.setBackground(new java.awt.Color(255, 255, 153));
         lblSliderValue.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         lblSliderValue.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblSliderValue.setText("10");
-        getContentPane().add(lblSliderValue, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 390, 180, -1));
+        lblSliderValue.setOpaque(true);
+        getContentPane().add(lblSliderValue, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 390, 200, -1));
 
-        jButton1.setText("Prueba la seleccion de carros");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 230, -1, -1));
-
+        slider.setBackground(new java.awt.Color(255, 255, 153));
         slider.setMaximum(19);
         slider.setMinimum(1);
         slider.setToolTipText("");
@@ -126,6 +132,7 @@ public class Ventana extends javax.swing.JFrame {
         });
         getContentPane().add(slider, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 400, -1, 40));
 
+        btnStart.setBackground(new java.awt.Color(255, 255, 153));
         btnStart.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnStart.setText("START");
         btnStart.addActionListener(new java.awt.event.ActionListener() {
@@ -135,24 +142,97 @@ public class Ventana extends javax.swing.JFrame {
         });
         getContentPane().add(btnStart, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 460, 120, 30));
 
+        panIA.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 204, 51), 30, true));
+        panIA.setOpaque(false);
+        panIA.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        btnCarrera.setBackground(new java.awt.Color(255, 204, 102));
+        btnCarrera.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        btnCarrera.setText("CARRERA");
+        btnCarrera.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCarreraActionPerformed(evt);
+            }
+        });
+        panIA.add(btnCarrera, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 0, 160, -1));
+
+        lblLamboSelected.setBackground(new java.awt.Color(51, 51, 51));
+        lblLamboSelected.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lblLamboSelected.setForeground(new java.awt.Color(255, 255, 0));
+        lblLamboSelected.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblLamboSelected.setOpaque(true);
+        panIA.add(lblLamboSelected, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 40, 80, 30));
+
+        lblVS.setBackground(new java.awt.Color(255, 255, 0));
+        lblVS.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lblVS.setForeground(new java.awt.Color(255, 255, 0));
+        lblVS.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblVS.setText("vs");
+        panIA.add(lblVS, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 70, 30, 20));
+
+        lblResult.setBackground(new java.awt.Color(51, 51, 51));
+        lblResult.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        lblResult.setForeground(new java.awt.Color(255, 255, 0));
+        lblResult.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblResult.setOpaque(true);
+        panIA.add(lblResult, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 160, 130, 50));
+
+        lblWinner.setBackground(new java.awt.Color(51, 51, 51));
+        lblWinner.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lblWinner.setForeground(new java.awt.Color(255, 255, 0));
+        lblWinner.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblWinner.setOpaque(true);
+        panIA.add(lblWinner, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 210, 60, 30));
+
+        lblBugattiSelected.setBackground(new java.awt.Color(51, 51, 51));
+        lblBugattiSelected.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lblBugattiSelected.setForeground(new java.awt.Color(255, 255, 0));
+        lblBugattiSelected.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblBugattiSelected.setOpaque(true);
+        panIA.add(lblBugattiSelected, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, 80, 30));
+
+        lblState.setFont(new java.awt.Font("Tahoma", 2, 11)); // NOI18N
+        lblState.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        panIA.add(lblState, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 240, 160, 30));
+
+        getContentPane().add(panIA, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 110, 220, 270));
+
+        panLambo.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 204, 51), 30, true));
+        panLambo.setOpaque(false);
         panLambo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lblNWinsLa.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblNWinsLa.setText("0");
+        panLambo.add(lblNWinsLa, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 40, 30));
 
         lamboTitle.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lamboTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lamboTitle.setText("Lamborghini");
         panLambo.add(lamboTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 240, 30));
 
+        lblLamboNivel1.setBackground(new java.awt.Color(255, 153, 0));
+        lblLamboNivel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblLamboNivel1.setText("Nivel 1");
-        panLambo.add(lblLamboNivel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, -1, -1));
+        lblLamboNivel1.setOpaque(true);
+        panLambo.add(lblLamboNivel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, 50, 20));
 
+        lblLamboNivel2.setBackground(new java.awt.Color(255, 153, 0));
+        lblLamboNivel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblLamboNivel2.setText("Nivel 2");
-        panLambo.add(lblLamboNivel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, -1, -1));
+        lblLamboNivel2.setOpaque(true);
+        panLambo.add(lblLamboNivel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 50, 20));
 
+        lblLamboNivel3.setBackground(new java.awt.Color(255, 153, 0));
+        lblLamboNivel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblLamboNivel3.setText("Nivel 3");
-        panLambo.add(lblLamboNivel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 230, -1, -1));
+        lblLamboNivel3.setOpaque(true);
+        panLambo.add(lblLamboNivel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 230, 50, 20));
 
+        lblLamboRefuerzo.setBackground(new java.awt.Color(255, 153, 0));
+        lblLamboRefuerzo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblLamboRefuerzo.setText("Refuerzo");
-        panLambo.add(lblLamboRefuerzo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 320, -1, -1));
+        lblLamboRefuerzo.setOpaque(true);
+        panLambo.add(lblLamboRefuerzo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 320, 60, 20));
 
         txtArSPLamboRefuerzo.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
@@ -202,26 +282,44 @@ public class Ventana extends javax.swing.JFrame {
 
         panLambo.add(txtArSPLambo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, 190, 40));
 
-        getContentPane().add(panLambo, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 50, 240, 400));
+        getContentPane().add(panLambo, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 50, 250, 400));
 
+        panBugatti.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 204, 51), 30, true));
+        panBugatti.setOpaque(false);
         panBugatti.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lblNWinsBugatti.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblNWinsBugatti.setText("0");
+        panBugatti.add(lblNWinsBugatti, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 4, 30, 20));
 
         bugattiTitle.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         bugattiTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         bugattiTitle.setText("Bugatti");
-        panBugatti.add(bugattiTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 240, -1));
+        panBugatti.add(bugattiTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 250, 30));
 
+        lblBugattiNivel1.setBackground(new java.awt.Color(255, 153, 0));
+        lblBugattiNivel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblBugattiNivel1.setText("Nivel 1");
-        panBugatti.add(lblBugattiNivel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, -1, -1));
+        lblBugattiNivel1.setOpaque(true);
+        panBugatti.add(lblBugattiNivel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, 50, 20));
 
+        lblBugattiNivel2.setBackground(new java.awt.Color(255, 153, 0));
+        lblBugattiNivel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblBugattiNivel2.setText("Nivel 2");
-        panBugatti.add(lblBugattiNivel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, -1, -1));
+        lblBugattiNivel2.setOpaque(true);
+        panBugatti.add(lblBugattiNivel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 50, 20));
 
+        lblBugattiNivel3.setBackground(new java.awt.Color(255, 153, 0));
+        lblBugattiNivel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblBugattiNivel3.setText("Nivel 3");
-        panBugatti.add(lblBugattiNivel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 230, -1, -1));
+        lblBugattiNivel3.setOpaque(true);
+        panBugatti.add(lblBugattiNivel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 230, 50, 20));
 
+        lblBugattiRefuerzo.setBackground(new java.awt.Color(255, 153, 0));
+        lblBugattiRefuerzo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblBugattiRefuerzo.setText("Refuerzo");
-        panBugatti.add(lblBugattiRefuerzo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 320, -1, -1));
+        lblBugattiRefuerzo.setOpaque(true);
+        panBugatti.add(lblBugattiRefuerzo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 320, 60, 20));
 
         txtArSPBugatti1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
@@ -271,13 +369,16 @@ public class Ventana extends javax.swing.JFrame {
 
         panBugatti.add(txtArSPBugattiRefuerzo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 340, 190, 40));
 
-        getContentPane().add(panBugatti, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, 240, 400));
+        getContentPane().add(panBugatti, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 250, 400));
+
+        lblFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Photos/FondoAsfalto.png"))); // NOI18N
         getContentPane().add(lblFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 500));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStartActionPerformed
+        this.lblState.setText("Esperando");
         btnStart.setVisible(false);
         
         //El admin crea los vehiculos iniciales
@@ -306,9 +407,13 @@ public class Ventana extends javax.swing.JFrame {
         this.duration = slider.getValue();
     }//GEN-LAST:event_sliderStateChanged
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnCarreraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCarreraActionPerformed
+        this.lblState.setText("Decidiendo");
+        this.lblLamboSelected.setText("");
+        this.lblBugattiSelected.setText("");
         selectCars();
-    }//GEN-LAST:event_jButton1ActionPerformed
+        
+    }//GEN-LAST:event_btnCarreraActionPerformed
 
     public void selectCars(){
         //El admin verifica la lista de refuerzo
@@ -330,6 +435,7 @@ public class Ventana extends javax.swing.JFrame {
             updateFields(this.txtArLambo3, this.Lambo3);
             updateFields(this.txtArLamboRefuerzo, this.Lambo4);
         }
+        
         if(!this.Bugatti4.isEmpty()){
             Vehiculo chosen = this.Bugatti4.getHead();
             this.Bugatti4.sacar();
@@ -378,6 +484,21 @@ public class Ventana extends javax.swing.JFrame {
             this.Bugatti3.sacar();
             updateFields(txtArBugatti3, Bugatti3);
         }
+
+        this.lblBugattiSelected.setText(BugattiChosen.id);
+        this.lblLamboSelected.setText(LamboChosen.id);
+        System.out.println("Seleccionados: " + LamboChosen.id + " y "+ BugattiChosen.id);
+        
+        //updateSelected(LamboChosen.id, BugattiChosen.id);
+        
+        
+        try {
+            sleep(1000);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(Ventana.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
         LamboChosen.setNext(null);
         BugattiChosen.setNext(null);
         LamboChosen.counter = 0;
@@ -386,6 +507,7 @@ public class Ventana extends javax.swing.JFrame {
         //Empieza la IA
         try{
             procesador.estado="Decidiendo";
+            this.lblState.setText("Decidiendo");
             sleep(this.duration*1000);
         }
         catch(InterruptedException ex){
@@ -396,6 +518,7 @@ public class Ventana extends javax.swing.JFrame {
         
         try{
             procesador.estado="Anunciando el resultado...";
+            this.lblState.setText("Anunciando el resultado...");
             sleep(1500);
         }
         catch(InterruptedException ex){
@@ -403,6 +526,7 @@ public class Ventana extends javax.swing.JFrame {
         }
         
         procesador.estado="Esperando";
+        this.lblState.setText("Esperando");
         
         //El admin modifica las colas
         switch(ganador){
@@ -410,11 +534,17 @@ public class Ventana extends javax.swing.JFrame {
                 System.out.println("Gana bu");
                 this.winners.agregar(BugattiChosen);
                 this.winsBu++;
+                this.lblResult.setText("GANADOR");
+                this.lblWinner.setVisible(true);
+                this.lblWinner.setText(BugattiChosen.id);
                 break;
             case "la":
                 System.out.println("Gana la");
                 this.winners.agregar(LamboChosen);
                 this.winsLa++;
+                this.lblResult.setText("GANADOR");
+                this.lblWinner.setVisible(true);
+                this.lblWinner.setText(LamboChosen.id);
                 break;
             case "empate":
                 System.out.println("Empate");
@@ -424,6 +554,8 @@ public class Ventana extends javax.swing.JFrame {
                 queue(BugattiChosen);
                 updateFields(this.txtArLambo1, this.Lambo1);
                 updateFields(this.txtArBugatti1, this.Bugatti1);
+                this.lblResult.setText("EMPATE");
+                this.lblWinner.setVisible(false);
                 break;
             case "refuerzo":
                 System.out.println("Refuerzo");
@@ -431,6 +563,8 @@ public class Ventana extends javax.swing.JFrame {
                 this.Bugatti4.agregar(BugattiChosen);
                 updateFields(this.txtArLamboRefuerzo, this.Lambo4);
                 updateFields(this.txtArBugattiRefuerzo, this.Bugatti4);
+                this.lblResult.setText("Refuerzo");
+                this.lblWinner.setVisible(false);
                 break;
         }
         //El admin suma ciclos y contadores
@@ -455,9 +589,15 @@ public class Ventana extends javax.swing.JFrame {
         updateFields(this.txtArBugatti1, this.Bugatti1);
         updateFields(this.txtArBugatti2, this.Bugatti2);
         updateFields(this.txtArBugatti3, this.Bugatti3);
+        
+        this.lblNWinsLa.setText(Integer.toString(this.winsLa));
+        this.lblNWinsBugatti.setText(Integer.toString(this.winsBu));
     }
     
     public void createCars(){
+        
+        System.out.println("Creando carros");
+        
         Vehiculo vLambo = new Vehiculo("Lamborghini", this.counterLambo);
         this.counterLambo++;
         queue(vLambo);
@@ -473,7 +613,7 @@ public class Ventana extends javax.swing.JFrame {
             updateFields(this.txtArLambo3, this.Lambo3);
         }
 
-          //PROBARE UN PUSH
+        
         
         if (vBugatti.qualityLevel==1){
             updateFields(this.txtArBugatti1, this.Bugatti1); 
@@ -494,6 +634,11 @@ public class Ventana extends javax.swing.JFrame {
             txtArea.append(" - " + head.id);
             head = head.getNext();
         } 
+    }
+    
+    public void updateSelected(String lambo, String bugatti){
+        this.lblBugattiSelected.setText(bugatti);
+        this.lblLamboSelected.setText(lambo);
     }
     
     public void contador(Cola q){
@@ -575,21 +720,30 @@ public class Ventana extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCarrera;
     private javax.swing.JButton btnStart;
     private javax.swing.JLabel bugattiTitle;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel lamboTitle;
     private javax.swing.JLabel lblBugattiNivel1;
     private javax.swing.JLabel lblBugattiNivel2;
     private javax.swing.JLabel lblBugattiNivel3;
     private javax.swing.JLabel lblBugattiRefuerzo;
+    private javax.swing.JLabel lblBugattiSelected;
     private javax.swing.JLabel lblFondo;
     private javax.swing.JLabel lblLamboNivel1;
     private javax.swing.JLabel lblLamboNivel2;
     private javax.swing.JLabel lblLamboNivel3;
     private javax.swing.JLabel lblLamboRefuerzo;
+    private javax.swing.JLabel lblLamboSelected;
+    private javax.swing.JLabel lblNWinsBugatti;
+    private javax.swing.JLabel lblNWinsLa;
+    private javax.swing.JLabel lblResult;
     private javax.swing.JLabel lblSliderValue;
+    private javax.swing.JLabel lblState;
+    private javax.swing.JLabel lblVS;
+    private javax.swing.JLabel lblWinner;
     private javax.swing.JPanel panBugatti;
+    private javax.swing.JPanel panIA;
     private javax.swing.JPanel panLambo;
     private javax.swing.JSlider slider;
     private javax.swing.JTextArea txtArBugatti1;
