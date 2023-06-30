@@ -418,41 +418,38 @@ public class Ventana extends javax.swing.JFrame {
     public void selectCars(){
         //El admin verifica la lista de refuerzo
         if(!this.Lambo4.isEmpty()){
-            Vehiculo chosen = this.Lambo4.getHead();
-            this.Lambo4.sacar();
-            chosen.setNext(null);
-
             Random rand = new Random(); 
             int int_random = rand.nextInt(100);
 
             if(int_random<=40){
+                Vehiculo chosen = this.Lambo4.getHead();
+                this.Lambo4.sacar();
+                chosen.setNext(null);
                 chosen.qualityLevel = 1;
-            }
-            queue(chosen);
+                queue(chosen);
 
-            updateFields(this.txtArLambo1, this.Lambo1);
-            updateFields(this.txtArLambo2, this.Lambo2);
-            updateFields(this.txtArLambo3, this.Lambo3);
-            updateFields(this.txtArLamboRefuerzo, this.Lambo4);
+                updateFields(this.txtArLambo1, this.Lambo1);
+                updateFields(this.txtArLambo2, this.Lambo2);
+                updateFields(this.txtArLambo3, this.Lambo3);
+                updateFields(this.txtArLamboRefuerzo, this.Lambo4);
+            }
+            
         }
         
         if(!this.Bugatti4.isEmpty()){
-            Vehiculo chosen = this.Bugatti4.getHead();
-            this.Bugatti4.sacar();
-            chosen.setNext(null);
-
             Random rand = new Random(); 
             int int_random = rand.nextInt(100);
-
             if(int_random<=40){
+                Vehiculo chosen = this.Bugatti4.getHead();
+                this.Bugatti4.sacar();
+                chosen.setNext(null);
                 chosen.qualityLevel = 1;
+                queue(chosen);
+                updateFields(this.txtArBugatti1, this.Bugatti1);
+                updateFields(this.txtArBugatti2, this.Bugatti2);
+                updateFields(this.txtArBugatti3, this.Bugatti3);
+                updateFields(this.txtArBugattiRefuerzo, this.Bugatti4);
             }
-            queue(chosen);
-            
-            updateFields(this.txtArBugatti1, this.Bugatti1);
-            updateFields(this.txtArBugatti2, this.Bugatti2);
-            updateFields(this.txtArBugatti3, this.Bugatti3);
-            updateFields(this.txtArBugattiRefuerzo, this.Bugatti4);
         }
         
         Vehiculo LamboChosen, BugattiChosen;
@@ -487,18 +484,11 @@ public class Ventana extends javax.swing.JFrame {
 
         this.lblBugattiSelected.setText(BugattiChosen.id);
         this.lblLamboSelected.setText(LamboChosen.id);
+        this.lblState.setText("UUUU");
         System.out.println("Seleccionados: " + LamboChosen.id + " y "+ BugattiChosen.id);
         
         //updateSelected(LamboChosen.id, BugattiChosen.id);
-        
-        
-        try {
-            sleep(1000);
-        } catch (InterruptedException ex) {
-            Logger.getLogger(Ventana.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        
+
         LamboChosen.setNext(null);
         BugattiChosen.setNext(null);
         LamboChosen.counter = 0;
@@ -506,8 +496,9 @@ public class Ventana extends javax.swing.JFrame {
         
         //Empieza la IA
         try{
-            procesador.estado="Decidiendo";
-            this.lblState.setText("Decidiendo");
+            
+            this.procesador.estado="Decidiendo";
+            this.lblState.setText(this.procesador.estado);
             sleep(this.duration*1000);
         }
         catch(InterruptedException ex){
@@ -517,16 +508,16 @@ public class Ventana extends javax.swing.JFrame {
         String ganador = procesador.winner(BugattiChosen, LamboChosen);
         
         try{
-            procesador.estado="Anunciando el resultado...";
-            this.lblState.setText("Anunciando el resultado...");
+            this.procesador.estado="Anunciando el resultado...";
+            this.lblState.setText(this.procesador.estado);
             sleep(1500);
         }
         catch(InterruptedException ex){
             Logger.getLogger(Ventana.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        procesador.estado="Esperando";
-        this.lblState.setText("Esperando");
+        this.procesador.estado="Esperando";
+        this.lblState.setText(this.procesador.estado);
         
         //El admin modifica las colas
         switch(ganador){
