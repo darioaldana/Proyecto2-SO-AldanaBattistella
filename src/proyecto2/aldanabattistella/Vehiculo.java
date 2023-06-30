@@ -17,6 +17,7 @@ public class Vehiculo {
     public String empresa;
     public int hq;
     private Vehiculo next;
+    public int counter;
     
     public Vehiculo(String empresa, int counter) {
         this.carroceriaHQ = (setQuality(60));
@@ -25,6 +26,7 @@ public class Vehiculo {
         this.ruedasHQ = (setQuality(40));
         this.empresa = empresa;
         this.hq = 0;
+        this.counter = 0;
         
         this.id = create_id(empresa, counter);
                 
@@ -34,9 +36,9 @@ public class Vehiculo {
 //        System.out.println("Chasis:  " + chasisHQ);
 //        System.out.println("Motor:  " + motorHQ);
 //        System.out.println("Rueda:  " + ruedasHQ);
-        System.out.println("CALIDAD: " + qualityLevel);
-        System.out.println("ID: " + id);
-        System.out.println("");
+//        System.out.println("CALIDAD: " + qualityLevel);
+//        System.out.println("ID: " + id);
+//        System.out.println("");
         
         //PROBANDo
     }
@@ -53,14 +55,7 @@ public class Vehiculo {
         if (chasisHQ){hq++;}
         if (motorHQ){hq+=3;}
         if (ruedasHQ){hq+=4;}
-//        if (carroceriaHQ){hq++;}
-//        if (chasisHQ){hq++;}
-//        if (motorHQ){hq++;}
-//        if (ruedasHQ){hq++;}
-
-//        if (hq == 4){return 1;} 
-//        if (hq == 3 && motorHQ){return 1;}
-//        if (hq>=2){return 2;}
+        
         if (hq >= 8){return 1;} 
         if (hq >= 4 && hq <= 7){return 2;}
         return 3; 

@@ -6,6 +6,7 @@
 package proyecto2.aldanabattistella;
 
 import static java.lang.Thread.sleep;
+import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -16,6 +17,7 @@ import java.util.logging.Logger;
 public class Ventana extends javax.swing.JFrame {
     public int counterBugatti = 0; 
     public int counterLambo = 0; 
+    //colas del admin
     public Cola Lambo1;
     public Cola Lambo2; 
     public Cola Lambo3;
@@ -24,7 +26,9 @@ public class Ventana extends javax.swing.JFrame {
     public Cola Bugatti2; 
     public Cola Bugatti3;
     public Cola Bugatti4;
+    public Cola winners;
     public IA procesador;
+    //Ciclo tambien del admin
     public int cicloCounter;
     public int duration;
     
@@ -40,6 +44,7 @@ public class Ventana extends javax.swing.JFrame {
         this.Bugatti2 = new Cola();
         this.Bugatti3 = new Cola();
         this.Bugatti4 = new Cola();
+        this.winners = new Cola();
         this.procesador = new IA();
         
         this.cicloCounter = 2;
@@ -281,10 +286,7 @@ public class Ventana extends javax.swing.JFrame {
             
             Vehiculo vBugatti = new Vehiculo("Bugatti", this.counterBugatti);
             this.counterBugatti++;
-            queue(vBugatti);
-            
-            System.out.println("");
-           
+            queue(vBugatti);           
         }
         
         updateFields(this.txtArLambo1, this.Lambo1);
@@ -294,7 +296,21 @@ public class Ventana extends javax.swing.JFrame {
         updateFields(this.txtArBugatti2, this.Bugatti2);
         updateFields(this.txtArBugatti3, this.Bugatti3);
         
+        
 //        while(true){
+//            if(!this.Lambo4.isEmpty()){
+//                Vehiculo chosen = this.Lambo4.getHead();
+//                this.Lambo4.sacar();
+//                
+//                Random rand = new Random(); 
+//                int int_random = rand.nextInt(100);
+//                
+//                if(int_random<=40){
+//                    chosen.qualityLevel = 1;
+//                }
+//                queue(chosen);
+//            }
+//            
 //            selectCars();
 //            
 //        }
@@ -312,6 +328,7 @@ public class Ventana extends javax.swing.JFrame {
 
     public void selectCars(){
         Vehiculo LamboChosen, BugattiChosen;
+        //El admin selecciona los carros para correr
         if (!this.Lambo1.isEmpty()){
             LamboChosen = this.Lambo1.getHead();
             this.Lambo1.sacar();
@@ -339,16 +356,55 @@ public class Ventana extends javax.swing.JFrame {
             this.Bugatti3.sacar();
             updateFields(txtArBugatti3, Bugatti3);
         }
-
-        System.out.println("Seleccionados: " + LamboChosen.id + " vs " + BugattiChosen.id);
-
-        //AQUÍ VA LA LLAMADA A LA PARTE DE LA IA
+        LamboChosen.setNext(null);
+        BugattiChosen.setNext(null);
+        
+        //Empieza la IA
+        try{
+            sleep(this.duration*1000);
+        }
+        catch(InterruptedException ex){
+            Logger.getLogger(Ventana.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        String ganador = procesador.winner(BugattiChosen, LamboChosen);
+        
+        //El admin modifica las colas
+        switch(ganador){
+            case "bu":
+                System.out.println("Gana b");
+                this.winners.agregar(BugattiChosen);
+                break;
+            case "la":
+                System.out.println("Gana l");
+                this.winners.agregar(LamboChosen);
+                break;
+            case "empate":
+                System.out.println("Empate");
+                LamboChosen.qualityLevel = 1;
+                BugattiChosen.qualityLevel = 1;
+                queue(LamboChosen);
+                queue(BugattiChosen);
+                updateFields(this.txtArLambo1, this.Lambo1);
+                updateFields(this.txtArBugatti1, this.Bugatti1);
+                break;
+            case "refuerzo":
+                System.out.println("Refuerzo");
+                this.Lambo4.agregar(LamboChosen);
+                this.Bugatti4.agregar(BugattiChosen);
+                updateFields(this.txtArLamboRefuerzo, this.Lambo4);
+                updateFields(this.txtArBugattiRefuerzo, this.Bugatti4);
+                break;
+        }
         
         this.cicloCounter++;
         if ((this.cicloCounter%2)==0){
-            System.out.println("");
-            System.out.println("");
-            createCars();
+            Random rand = new Random(); 
+            int int_random = rand.nextInt(100);
+            
+            if(int_random<=80){
+                createCars();
+            }
         }
         
     }
@@ -360,10 +416,6 @@ public class Ventana extends javax.swing.JFrame {
         Vehiculo vBugatti = new Vehiculo("Bugatti", this.counterBugatti);
         this.counterBugatti++;
         queue(vBugatti);
-        
-        System.out.println("");
-        System.out.println("****NUEVOS:  " + vLambo.id + " y " + vBugatti.id);
-        System.out.println("");
         
         if (vLambo.qualityLevel==1){
             updateFields(this.txtArLambo1, this.Lambo1);    
