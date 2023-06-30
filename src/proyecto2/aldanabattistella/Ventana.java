@@ -112,7 +112,7 @@ public class Ventana extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 250, -1, -1));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 230, -1, -1));
 
         slider.setMaximum(19);
         slider.setMinimum(1);
@@ -385,6 +385,7 @@ public class Ventana extends javax.swing.JFrame {
         
         //Empieza la IA
         try{
+            procesador.estado="Decidiendo";
             sleep(this.duration*1000);
         }
         catch(InterruptedException ex){
@@ -393,15 +394,25 @@ public class Ventana extends javax.swing.JFrame {
         
         String ganador = procesador.winner(BugattiChosen, LamboChosen);
         
+        try{
+            procesador.estado="Anunciando el resultado...";
+            sleep(1500);
+        }
+        catch(InterruptedException ex){
+            Logger.getLogger(Ventana.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        procesador.estado="Esperando";
+        
         //El admin modifica las colas
         switch(ganador){
             case "bu":
-                System.out.println("Gana b");
+                System.out.println("Gana bu");
                 this.winners.agregar(BugattiChosen);
                 this.winsBu++;
                 break;
             case "la":
-                System.out.println("Gana l");
+                System.out.println("Gana la");
                 this.winners.agregar(LamboChosen);
                 this.winsLa++;
                 break;

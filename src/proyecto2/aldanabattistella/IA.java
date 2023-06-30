@@ -3,10 +3,15 @@ package proyecto2.aldanabattistella;
 import java.util.Random;
 
 public class IA {
+    public String estado;
+    
+    public IA(){
+        this.estado="Esperando";
+    }
     
     public String winner(Vehiculo bu, Vehiculo la){
         int valor = resultado();
-        System.out.println(valor);
+        
         if(valor<=40){
             
             if(bu.hq == la.hq){
